@@ -18,15 +18,19 @@ const Game = () => {
 			canvas: canvasRef.current,
     })
 
-    let speed = 480
+    let speed = 10
 
     const sprite = k.add([
-      k.pos(k.width()/2, k.height()/2),
+      k.pos(0,0),
       { vel: k.Vec2.fromAngle(27) },
       { color: k.WHITE}
     ]);
 
     sprite.onUpdate(() => {
+
+
+
+      /*
       sprite.move(sprite.vel.scale(speed))
       if (sprite.pos.x - 125 < 0 || sprite.pos.x + 125 > k.width()) {
         sprite.vel.x = -sprite.vel.x
@@ -40,22 +44,16 @@ const Game = () => {
         sprite.move(sprite.vel.scale(speed))
         // k.debug.log("bounced y")
       }
+        */
     })
 
     sprite.onDraw(() => {
-      k.drawEllipse({
-        radiusX: 125,
-        radiusY: 50,
-        pos: k.vec2(0, 0),
-        color: k.rgb(50,50,50),
-        outline: { color: k.BLACK, width: 4 },
-      })
       k.drawText({
-        text: "DVD",
+        text: "Site Under Construction\n\nComing Soon",
         size: 84,
-        font: "sans-serif",
-        width: 250,
-        pos: k.vec2(-84, -37),
+        font: "consolas",
+        width: 2000,
+        pos: k.vec2(0, 0),
         color: sprite.color,
       })
     })

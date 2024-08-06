@@ -5,6 +5,9 @@ import kaboom from 'kaboom';
 const Game = () => {
   
 	const canvasRef = React.useRef(null)
+  var timerR = 0
+  var timerG = 0
+  var timerB = 0
 
   useEffect(() => {
 
@@ -21,14 +24,22 @@ const Game = () => {
     let speed = 10
 
     const sprite = k.add([
-      k.pos(0,0),
+      k.pos(20,20),
       { vel: k.Vec2.fromAngle(27) },
       { color: k.WHITE}
     ]);
 
     sprite.onUpdate(() => {
-
-
+      timerR++
+      timerG++
+      timerB++
+      if (timerR > 199) timerR = 0
+      if (timerG > 177) timerG = 0
+      if (timerB > 155) timerB = 0
+      var r = Math.floor ( 155 + Math.sin(timerR * Math.PI / 100) * 100 )
+      var g = Math.floor ( 155 + Math.sin(timerG * Math.PI / 89) * 100 )
+      var b = Math.floor ( 155 + Math.sin(timerB * Math.PI / 73) * 100 )
+      sprite.color = k.rgb(r, g, b)
 
       /*
       sprite.move(sprite.vel.scale(speed))

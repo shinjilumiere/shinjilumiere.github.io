@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Game/>
+        <p>site last updated 20240807</p>
       </header>
     </div>
   );

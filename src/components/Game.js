@@ -1,77 +1,67 @@
 // src/components/KaboomGame.js
-import React, { useEffect } from 'react';
-import kaboom from 'kaboom';
+import React, { useEffect, useRef } from 'react';
+import kaplay from 'kaplay';
 
 const Game = () => {
-  
-	const canvasRef = React.useRef(null)
-  var timerR = 0
-  var timerG = 0
-  var timerB = 0
+  const canvasRef = React.useRef(0)
 
   useEffect(() => {
+    if (canvasRef.current) {
+      var k = kaplay();
 
-    // Kaboom.js game code goes here
+      // NOTE: build first before adding assets
+      // npm run build
+      k.loadSprite("grid", "sprites/grid.png");
+      k.loadSprite("x", "sprites/x.png");
+      k.loadSprite("o", "sprites/o.png");
 
-    const k = kaboom({
-      background: [3, 3, 3],
-			// if you don't want to import to the global namespace
-			global: false,
-			// if you don't want kaboom to create a canvas and insert under document.body
-			canvas: canvasRef.current,
-    })
+      // TODO
+      // center the canvas
+      // add 
 
-    let speed = 10
+      const gameState = [[1,1,0],[0,1,2],[0,2,1]]
 
-    const sprite = k.add([
-      k.pos(20,20),
-      { vel: k.Vec2.fromAngle(27) },
-      { color: k.WHITE}
-    ]);
+      k.onDraw(() => {
 
-    sprite.onUpdate(() => {
-      timerR++
-      timerG++
-      timerB++
-      if (timerR > 199) timerR = 0
-      if (timerG > 177) timerG = 0
-      if (timerB > 155) timerB = 0
-      var r = Math.floor ( 155 + Math.sin(timerR * Math.PI / 100) * 100 )
-      var g = Math.floor ( 155 + Math.sin(timerG * Math.PI / 89) * 100 )
-      var b = Math.floor ( 155 + Math.sin(timerB * Math.PI / 73) * 100 )
-      sprite.color = k.rgb(r, g, b)
+        k.drawSprite({
+          sprite: "grid",
+          pos: k.vec2(0, 0),
+          scale: 4
+          });
+
+        for(var i = 0; i < 3; i++) {
+          for(var j = 0; j < 3; j++) {
+            var sprite = "n"
+            switch(gameState[j][i]) {
+              case 1:
+                sprite = "x";
+                break;
+              case 2:
+                sprite = "o";
+                break;
+            }
+
+            if(sprite != "n") {
+              k.drawSprite({
+              sprite: sprite,
+              pos: k.vec2(128 * i, 128 * j),
+              scale: 4
+              });
+            }
+          }
+        }
+      });
 
       /*
-      sprite.move(sprite.vel.scale(speed))
-      if (sprite.pos.x - 125 < 0 || sprite.pos.x + 125 > k.width()) {
-        sprite.vel.x = -sprite.vel.x
-        sprite.color = k.rand(k.rgb(255, 255, 255))
-        // k.debug.log("bounced x")
-        sprite.move(sprite.vel.scale(speed))
-      }
-      if (sprite.pos.y - 50 < 0 || sprite.pos.y + 50 > k.height()) {
-        sprite.vel.y = -sprite.vel.y
-        sprite.color = k.rand(k.rgb(255, 255, 255))
-        sprite.move(sprite.vel.scale(speed))
-        // k.debug.log("bounced y")
-      }
-        */
-    })
+      const x = k.add([
+        k.sprite("x"),
+        k.scale(1),
+        k.pos(0,0),
+      ])*/
+    }
+  });
 
-    sprite.onDraw(() => {
-      k.drawText({
-        text: "Site Under Construction\n\nComing Soon",
-        size: 84,
-        font: "consolas",
-        width: 2000,
-        pos: k.vec2(0, 0),
-        color: sprite.color,
-      })
-    })
-
-  }, []);
-
-	return <canvas ref={canvasRef} className="Game"></canvas>;
-};
+  return <canvas ref={canvasRef} className="Game" />
+}
 
 export default Game;

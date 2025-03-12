@@ -1,23 +1,19 @@
-.App {
-  text-align: center;
-}
-
-.Game {
-  height: 80vh !important;
-  width: 80vw !important;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
+}
+
+.Mobile-view {
+  background-color: #282c34;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;  /* Full viewport width */
+  overflow: hidden; /* Prevent image overflow */
+}
+
+.Mobile-view img {
+  width: 100%;          /* Take full width */
+  height: 100%;         /* Take full height */
+  object-fit: contain;  /* Ensure the entire image fits */
 }

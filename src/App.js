@@ -1,13 +1,19 @@
 import './App.css';
 import Game from './components/Game';
+import {BrowserView, MobileView} from 'react-device-detect';
+import SorryImg from './images/sorry.png';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Game/>
-        <p>site last updated 20240807</p>
-      </header>
+      <BrowserView className="App-header">
+        <Game />
+      </BrowserView>
+      <MobileView>
+        <div className="Mobile-view">
+          <img src={SorryImg}/ >
+        </div>
+      </MobileView>
     </div>
   );
 }

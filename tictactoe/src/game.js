@@ -8,14 +8,14 @@ kaplay({
 
 // NOTE: build first before adding assets
 // npm run build
-loadSprite("grid", "assets/grid.png");
-loadSprite("x", "assets/x.png");
-loadSprite("o", "assets/o.png");
-loadSprite("diag1", "assets/diag1.png");
-loadSprite("diag2", "assets/diag2.png");
-loadSprite("vert", "assets/vert.png");
-loadSprite("hori", "assets/hori.png");
-loadFont("tiny5", "assets/Tiny5-Regular.ttf", {
+loadSprite("grid", "/assets/grid.png");
+loadSprite("x", "/assets/x.png");
+loadSprite("o", "/assets/o.png");
+loadSprite("diag1", "/assets/diag1.png");
+loadSprite("diag2", "/assets/diag2.png");
+loadSprite("vert", "/assets/vert.png");
+loadSprite("hori", "/assets/hori.png");
+loadFont("tiny5", "/assets/Tiny5-Regular.ttf", {
   outline: 4,
   filter: "nearest",
   

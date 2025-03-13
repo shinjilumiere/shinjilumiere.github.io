@@ -26,7 +26,7 @@ loadFont("tiny5", "/assets/Tiny5-Regular.ttf", {
 // add 
 add([
   text("Tic Tac Toe", {
-    size: 80,
+    size: 56,
     font: "tiny5",
   }),
   pos(center().sub(vec2(0, 240))),

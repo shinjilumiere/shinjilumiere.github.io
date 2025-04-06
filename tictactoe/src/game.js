@@ -121,8 +121,8 @@ onDraw(() => {
   
     drawSprite({
       sprite: "title",
-      pos: center().add(vec2(-288, -330)),
-      scale: 3
+      pos: center().add(vec2(-196, -288)),
+      scale: 2
       });
 });
 

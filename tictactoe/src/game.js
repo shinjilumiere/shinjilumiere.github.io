@@ -15,18 +15,22 @@ loadSprite("diag1", "/assets/diag1.png");
 loadSprite("diag2", "/assets/diag2.png");
 loadSprite("vert", "/assets/vert.png");
 loadSprite("hori", "/assets/hori.png");
+loadSprite("title", "/assets/title.png");
+loadSprite("turntext", "/assets/turntext.png");
+loadSprite("winner", "/assets/winner.png");
 loadFont("tiny5", "/assets/Tiny5-Regular.ttf", {
-  outline: 4,
-  filter: "nearest",
+  outline: 0,
+  filter: "linear",
   
 });
 
 // TODO
 // center the canvas
 // add 
+/*
 add([
   text("Tic Tac Toe", {
-    size: 56,
+    size: 96,
     font: "tiny5",
   }),
   pos(center().sub(vec2(0, 240))),
@@ -41,6 +45,7 @@ var bottomText = add([
   pos(center().add(vec2(0, 240))),
   anchor("center"),
 ]);
+*/
 
 var gameState = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
 var gameWin = false
@@ -92,10 +97,33 @@ onDraw(() => {
   {
     drawSprite({
       sprite: currentPlayer == 0 ? "x" : "o",
-      pos: center().add(vec2(-10, 208)),
+      pos: center().add(vec2(-34, 218)),
       scale: 2
     });
   }
+
+  if(gameWin)
+    {
+      drawSprite({
+        sprite: "winner",
+        pos: center().add(vec2(-128, 190)),
+        scale: 3
+        });
+    }
+    else
+    {
+      drawSprite({
+        sprite: "turntext",
+        pos: center().add(vec2(-196, 216)),
+        scale: 2
+        });
+    }
+  
+    drawSprite({
+      sprite: "title",
+      pos: center().add(vec2(-288, -330)),
+      scale: 3
+      });
 });
 
 onMousePress(() => { 
@@ -247,10 +275,6 @@ onMousePress(() => {
     });
   });
 
-  if(gameWin)
-  {
-    bottomText.text = "Winner!"
-  }
   // next player
   currentPlayer = (currentPlayer + 1) % 2;
 });
